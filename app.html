@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con AppStream Embebido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #appstream-container {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+    <!-- Incluir el SDK de AppStream Embed -->
+    
+</head>
+<body>
+
+<div id="appstream-container"></div>
+<script type="text/javascript" src="./appstream_embed.js"> </script>
+
+<script>
+    // Configuración de AppStream Embed
+    const appstreamContainer = document.getElementById('appstream-container');
+    const appstreamOptions = {
+        sessionURL: 'https://appstream2.eu-west-1.aws.amazon.com/authenticate?parameters=eyJ0eXBlIjoiRU5EX1VTRVIiLCJleHBpcmVzIjoiMTcwNDg4MDU2MyIsImF3c0FjY291bnRJZCI6IjY0MzkyNjIxMzA3OSIsInVzZXJJZCI6IjMzMyIsImNhdGFsb2dTb3VyY2UiOiJzdGFjay9JbnRlcm5ldFN0YWNrIiwiZmxlZXRSZWYiOiJmbGVldC9JbnRlcm5ldFN0YWNrLWZsZWV0IiwiYXBwbGljYXRpb25JZCI6IiIsInVzZXJDb250ZXh0IjoiIiwibWF4VXNlckR1cmF0aW9uSW5TZWNzIjoiNTc2MDAifQ%3D%3D&signature=bKcAmWmQLLFGBiB8BLI2Sp%2FLWA%2Bj3%2F3ywc45yBYA%2Bw4%3D', 
+        userInterfaceConfig: {
+            [AppStream.Embed.Options.HIDDEN_ELEMENTS]: [AppStream.Embed.Elements.TOOLBAR]
+        }
+        // ... Otras configuraciones según la documentación
+    };
+
+    // Inicializar AppStream Embed con opciones de interfaz de usuario
+    const appstreamEmbed = new AppStream.Embed("appstream-container", appstreamOptions);
+
+    appstreamEmbed.startSession(appstreamContainer).catch(error => {
+        console.error('Error al iniciar la sesión de AppStream Embed:', error);});
+</script>
+
+</body>
+</html>
+
+
